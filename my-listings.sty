@@ -1,0 +1,140 @@
+% !TEX encoding = UTF-8
+
+% ##############################################################
+\lstdefinelanguage{OXPath}
+{%
+  basicstyle=\tiny\ttfamily\color{MaterialOrange},
+  identifierstyle=\color{MaterialOrange},
+  commentstyle=\color{MaterialGrey400}\itshape,
+  morestring=[b]",
+  morestring=[b]',
+  moredelim=*[l][\color{MaterialRed}]{doc(},
+  moredelim=*[s][\color{MaterialRed}]{\{}{\}},
+  moredelim=*[s][\color{MaterialGreen}]{:<}{>},
+  moredelim=*[is][\color{MaterialPurple}]{?!}{!?},
+  morecomment=[s]{(:}{:)},
+}
+
+\lstdefinelanguage{MarkedOXPath}
+{%
+  basicstyle=\tiny\ttfamily\color{md-orange},
+  morestring=[b]",
+  morestring=[b]',
+  moredelim=*[l][\color{md-red}]{doc(},
+  moredelim=*[s][\color{md-red}]{\{}{\}},
+  moredelim=*[s][\color{md-green}]{:<}{>},
+  moredelim=*[is][\color{md-purple}]{?!}{!?},
+  morecomment=[s]{<?}{?>},
+  morecomment=[s]{<!--}{-->},
+  stringstyle=\color{md-blue},
+  identifierstyle=\color{md-orange},
+  backgroundcolor=\color{white},
+  fillcolor=\color{white},
+  rulecolor=\color{white},
+}
+
+ \lstdefinelanguage{XML}
+{%
+  basicstyle=\tiny\ttfamily\color{MaterialRed900},
+  identifierstyle=\bfseries\color{MaterialRed900},
+  keywordstyle=\color{MaterialDeepOrange},
+  commentstyle=\color{MaterialGrey400}\itshape,
+  morestring=[b]",
+  morestring=[b]',
+  moredelim=*[s][\color{MaterialGreen}]{<}{>},
+  moredelim=*[is][\color{MaterialRed900}]{?!}{!?},
+  morekeywords={xmlns, xml, version, type, lang, encoding, class, id},
+  morecomment=[s]{<!--}{-->},
+}
+
+\lstdefinelanguage{MarkedXML}
+{%
+  basicstyle=\tiny\ttfamily\color{MaterialRed900},
+  identifierstyle=\bfseries\color{MaterialRed900},
+  keywordstyle=\color{MaterialDeepOrange},
+  commentstyle=\color{MaterialGrey400}\itshape,
+  morestring=[b]",
+  morestring=[b]',
+  moredelim=*[s][\color{MaterialGreen}]{<}{>},
+  moredelim=*[is][\color{MaterialRed900}]{?!}{!?},
+  morekeywords={xmlns, xml, version, type, lang, encoding, class, id},
+  morecomment=[s]{<!--}{-->},
+  backgroundcolor=\color{white},
+  fillcolor=\color{white},
+  rulecolor=\color{white},
+}
+
+ \lstdefinelanguage{HTML}
+{%
+  basicstyle=\tiny\ttfamily\color{MaterialIndigo900},
+  identifierstyle=\bfseries\color{MaterialIndigo900},
+  keywordstyle=\color{MaterialDeepOrange},
+  commentstyle=\color{MaterialGrey400}\itshape,
+  morestring=[b]",
+  morestring=[b]',
+  moredelim=*[s][\color{MaterialOrange}]{<}{>},
+  moredelim=*[is][\color{MaterialIndigo900}]{?!}{!?},
+  morekeywords={xmlns, xml, version, type, lang, encoding, class, id},
+  morecomment=[s]{<!--}{-->},
+}
+
+\lstdefinelanguage{MarkedHTML}
+{%
+  basicstyle=\tiny\ttfamily\color{MaterialIndigo900},
+  identifierstyle=\bfseries\color{MaterialIndigo900},
+  keywordstyle=\color{MaterialDeepOrange},
+  commentstyle=\color{MaterialGrey400}\itshape,
+  morestring=[b]",
+  morestring=[b]',
+  moredelim=*[s][\color{MaterialOrange}]{<}{>},
+  moredelim=*[is][\color{MaterialIndigo900}]{?!}{!?},
+  morekeywords={xmlns, xml, version, type, lang, encoding, class, id},
+  morecomment=[s]{<!--}{-->},
+  backgroundcolor=\color{white},
+  fillcolor=\color{white},
+  rulecolor=\color{white},
+}
+
+ \lstdefinelanguage{Verbatim}
+{
+  basicstyle=\tiny\ttfamily\color{grey},
+  stringstyle=\color{prussian}
+}
+
+\lstdefinestyle{MyListStyle} {
+  breaklines=true,
+  breakatwhitespace=true,
+  breakindent=5ex,
+  escapechar=§,
+  showstringspaces=false,
+  columns=fullflexible,
+  numbers=left,
+  numberstyle=\tiny\normalfont\color{MaterialGrey600},
+  stringstyle=\tiny\ttfamily\color{MaterialBlue},
+  numbersep=1pt,
+  xleftmargin=7pt,
+  % frame = single,
+  % rulecolor=\color{gray}
+}
+
+\lstset{
+   style=MyListStyle
+}
+
+\NewDocumentCommand{\Line}{s O{1.0} m m m}{
+    \IfBooleanTF{#1}{\vspace{-#2\baselineskip}}{}
+    \lstinputlisting[
+            language=#3,
+            linerange={#4-#4},
+            firstnumber=#4,
+            ]{#5}
+}%
+
+\NewDocumentCommand{\ModLine}{s O{1.0} m m m m}{
+    \IfBooleanTF{#1}{\vspace{-#2\baselineskip}}{}
+    \lstinputlisting[
+            language=#3,
+            linerange={#4-#4},
+            firstnumber=#5,
+            ]{#6}
+}%

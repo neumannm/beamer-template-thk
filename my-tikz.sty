@@ -1,0 +1,32 @@
+% !TEX encoding = UTF-8
+
+% ##############################################################
+\tikzset{
+  image/.style = {
+    preaction={fill,prussian},
+    draw=prussian,
+    rectangle,
+    inner sep=0.12ex
+  },
+  big_arrow/.style = {
+    line width=1mm,
+    draw,
+    -triangle 45,
+    postaction={draw,line width=2mm, shorten >=4mm, -}
+  },
+  header/.style = {
+    draw, prussian!60,
+    preaction={fill,prussian!60},
+    text width=0.95\textwidth,
+    text height=1.6ex,
+    text depth=.25ex,
+    minimum height=.65cm,
+    text=white,
+  },
+  content/.style = {
+    draw, prussian!60,
+    preaction={fill,prussian!15},
+    text width=0.95\textwidth,
+    inner ysep=-0.4ex,
+  },
+}

@@ -1,0 +1,296 @@
+%------------------------------------------------------------------------------
+%	ARARA DIRECTIVES
+%------------------------------------------------------------------------------
+
+% arara: clean: { files: [arara.log, main.aux, main.bbl, main.bcf, main.blg, main.idx, main.ilg, main.ind, main.log, main.nav, main.out, main.ptc, main.run.xml, main.synctex.gz, main.snm, main.toc, main.vrb] }
+
+% arara: xelatex: { synctex: yes, options: "-halt-on-error -file-line-error-style", shell: yes}
+% arara: xelatex: { synctex: yes, options: "-halt-on-error -file-line-error-style", shell: yes}
+
+%------------------------------------------------------------------------------
+
+\documentclass[%
+  hyperref={pdfpagelabels=false, urlcolor=cyan},
+	xcolor={svgnames},
+	% handout
+]{beamer}
+
+\usepackage{etoolbox}
+\newtoggle{german}
+
+% % % % % LANGUAGE % % % %
+% Make your choice here
+%\togglefalse{german} % English
+\toggletrue{german} % German
+% % % % % \LANGUAGE % % % %
+
+% % % Handouts % % %
+%\usepackage{handoutWithNotes}
+%\pgfpagesuselayout{2 on 1 with notes landscape}[a4paper,border shrink=5mm]
+% % % Handouts % % %
+
+
+% % % % Basic input and font settings % % % %
+\iftoggle{german}{
+\usepackage[ngerman]{babel} % Deutsche Sprachanpassungen
+\usepackage[T1]{fontenc}    % Silbentrennung bei Sonderzeichen
+\usepackage[utf8]{inputenc} % Direkte Angabe von Umlauten im Dokument.Wenn Sie an einem Mac sitzen,verwenden Sie ggf. „macce“ anstatt „utf8“.
+\usepackage[autostyle=true,german=quotes]{csquotes} % Anfuehrungszeichen\
+}{
+\usepackage[utf8]{inputenc}}
+
+% % % % Style % % % %
+\usetheme{Boadilla}
+\useoutertheme{miniframes}
+\useinnertheme{circles}
+
+% Some colours as used in other programms like openoffice
+\definecolor{red}{RGB}{184,71,71}
+\definecolor{green}{RGB}{51,204,102}
+\definecolor{blue}{RGB}{0,153,255}
+
+\definecolor{THRed}{RGB}{201,12,15}
+\definecolor{THOrange}{RGB}{234,91,12}
+\definecolor{THPurple}{RGB}{184,37,133}
+
+\setbeamercolor{palette primary}{bg=THPurple,fg=white}
+\setbeamercolor{palette secondary}{bg=THRed,fg=white}
+\setbeamercolor{palette tertiary}{bg=THOrange,fg=white}
+\setbeamercolor{palette quaternary}{bg=THRed,fg=white}
+\setbeamercolor{structure}{fg=THOrange} % itemize, enumerate, etc
+%\setbeamercolor{section in toc}{bg=THRed, fg=white} % TOC sections
+
+\setbeamercolor{title}{fg=THRed}
+\setbeamercolor{frametitle}{fg=THOrange}
+
+\setbeamercolor{section in head/foot}{fg=white, bg=THOrange}
+
+\usepackage{my-beamer}
+\usepackage{lmodern}
+
+\usepackage{verbatim} %if verbatim stuff is needed
+% \newenvironment{VerbExample}
+% {\semiverbatim}
+% {\endsemiverbatim}
+
+\usepackage{xpatch}
+
+\xpatchcmd{\itemize}
+  {\def\makelabel}
+  {\setlength{\itemsep}{1.5ex}\def\makelabel}
+  {}
+  {}
+
+\usepackage{nameref}
+\makeatletter
+\newcommand*{\currentname}{\@currentlabelname}
+\makeatother
+
+\usepackage{adjustbox}
+
+\usepackage[svgnames]{xcolor}
+\usepackage{my-xcolor} % custom colors
+\usepackage{xcolor-material}
+
+\usepackage{tikz} % drawing graphics
+\usetikzlibrary{arrows,backgrounds,calc,chains,decorations,fit,matrix,positioning,scopes,shapes,trees} % libraries to use
+\usepackage{my-tikz} % some modifications/defaults
+
+\usepackage{listings}
+\usepackage{my-listings} %tweak listings (custom languages etc.)
+
+\usepackage{forest} %??
+
+\usepackage{fontspec}
+\setmainfont{Roboto Light}
+\setsansfont{Roboto Light}
+
+% % % % Tables % % % %
+\usepackage{tabularx}
+\usepackage{booktabs} % For formal tables
+\usepackage{csvsimple} %input tables from csv
+% % % % Tables % % % %
+
+\usepackage{textcomp}
+\usepackage{amsmath,amsfonts,amssymb} % Mathe
+%\usepackage{eurosym}
+\usepackage{graphicx}
+\usepackage[labelformat=empty]{caption}
+
+% \usepackage{color}
+% \usepackage{hypernat}
+\usepackage[]{units}
+\usepackage{comment}
+\usepackage{subfigure}
+\usepackage{wasysym}
+\usepackage{ulem}
+\usepackage[printonlyused]{acronym}
+\usepackage{appendixnumberbeamer}
+\usepackage{epigraph}
+\usepackage{remreset}% tiny package containing just the \@removefromreset command
+\usepackage{./pdfpcnotes}% Usefull package for notes for presentations
+
+\let\Tiny=\tiny % Reduces a few recent error on Unix systems
+
+\usepackage[sorting=none,style=numeric-comp,backend=bibtex,firstinits=true]{biblatex} % load the package
+\addbibresource{./references.bib} % Add your bib file
+\renewcommand*{\bibfont}{\footnotesize}
+
+% MISC Styles %
+% \setbeamertemplate{bibliography item}[text]
+% \setbeamertemplate{footline}[frame number]
+% \setbeamersize{text margin left=0.3cm,text margin right=0.3cm}
+% \setbeamertemplate{navigation symbols}{}%remove navigation symbols
+% \makeatletter
+% \@removefromreset{subsection}{section}
+% \makeatother
+% \setcounter{subsection}{1}
+
+% Here are some usefulf different fonts. Use them in every flooting enviroment with \usebeamerfont{AAA}
+\setbeamerfont{AAA}{size*={16.00}{15.00}}
+\setbeamerfont{aaa}{size*={12.00}{11.00}}
+\setbeamerfont{bbb}{size*={11.00}{11.00}}
+\setbeamerfont{ccc}{size*={10.00}{11.00}}
+\setbeamerfont{ddd}{size*={9.00}{11.00}}
+\setbeamerfont{eee}{size*={8.00}{11.00}}
+\setbeamerfont{fff}{size*={7.75}{10.75}}
+\setbeamerfont{ggg}{size*={7.50}{10.50}}
+\setbeamerfont{hhh}{size*={7.25}{10.25}}
+\setbeamerfont{iii}{size*={7.00}{10.00}}
+\setbeamerfont{jjj}{size*={6.00}{9.00}}
+\setbeamerfont{kkk}{size*={5.00}{8.00}}
+\setbeamerfont{lll}{size*={4.00}{7.00}}
+\setbeamerfont{mmm}{size*={3.00}{6.00}}
+\setbeamerfont{nnn}{size*={2.00}{5.00}}
+
+\renewcommand*{\bibfont}{\usebeamerfont{kkk}}
+
+% A new cell type
+\newcommand{\specialcell}[2][c]{%
+  \begin{tabular}[#1]{@{}c@{}}#2\end{tabular}}
+
+% This is useful if you want to use enumerations over several frames
+% \newcounter{saveenumi}
+% \newcommand{\seti}{\setcounter{saveenumi}{\value{enumi}}}
+% \newcommand{\conti}{\setcounter{enumi}{\value{saveenumi}}}
+
+%------------------------------------------------------------------------------
+%	title page settings
+%------------------------------------------------------------------------------
+% logo of university
+\titlegraphic{
+\centering
+\includegraphics[height=1.3cm]{./logos/Logo_TH-Koeln_CMYK_22pt.pdf}
+}
+
+\title[Kurztitel]{Langtitel der Präsentation}
+\date{\today}
+\institute[TH K\"oln]{Technische Hochschule Köln}
+\author[Mandy Neumann]
+{%
+   \texorpdfstring{
+        \centering
+        Vorname Nachname\\
+        \footnotesize{\href{mailto:vorname.nachname@th-koeln.de}{vorname.nachname@th-koeln.de}}
+   }
+   {Vorname Nachnamen}
+}%\def\ThesisPubDate{\today} % Change here to the date you are going to print your thesis
+\subject{Langtitel der Präsentation or subject}
+\keywords{}
+
+\setbeamercovered{transparent}
+
+\begin{document}
+
+%------------------------------------------------------------------------------
+%	TITLE
+%------------------------------------------------------------------------------
+
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+%------------------------------------------------------------------------------
+%	TABLE OF CONTENTS
+%------------------------------------------------------------------------------
+
+\iftoggle{german}{
+	\begin{frame}{Agenda}
+		\usebeamerfont{ccc}
+    \tableofcontents[
+      subsectionstyle=hide
+    ]
+		\end{frame}
+}{
+		\begin{frame}{Table of Contents}
+		\usebeamerfont{ccc}
+    \tableofcontents[
+      subsectionstyle=hide
+    ]
+	\end{frame}
+}
+
+\AtBeginSection[] {
+\iftoggle{german}{
+	\begin{frame}{Agenda}
+		\usebeamerfont{ccc}
+		\tableofcontents[
+      currentsection,
+      currentsubsection,
+      subsectionstyle=hide
+    ]
+		\end{frame}
+}{
+		\begin{frame}{Table of Contents}
+		\usebeamerfont{ccc}
+		\tableofcontents[
+      currentsection,
+      currentsubsection,
+      subsectionstyle=hide
+    ]
+	\end{frame}
+}
+}
+
+%------------------------------------------------------------------------------
+%	INPUT
+%------------------------------------------------------------------------------
+% \input{somefile.tex}
+
+%------------------------------------------------------------------------------
+
+\begin{frame}{Diskussion}
+\usebeamerfont{aaa}
+Vielen Dank für die Aufmerksamkeit!\\
+Fragen?\bigskip
+
+Kontakt:\\
+\url{vorname.nachname@th-koeln.de}\bigskip
+
+\end{frame}
+
+%------------------------------------------------------------------------------
+
+% \begin{frame}
+%   \frametitle{Referenzen}
+%   \printbibliography[title={Referenzen}]
+% \end{frame}
+
+%------------------------------------------------------------------------------
+
+\setbeamertemplate{section in toc shaded}[default][100]
+  \begin{frame}{Gliederung}
+  	\tableofcontents[
+      currentsection,
+      currentsubsection,
+      subsectionstyle=hide
+    ]
+  \end{frame}
+
+%---
+\begin{frame}{Appendix}
+\end{frame}
+
+% \input{appendix.tex}
+
+\end{document}
